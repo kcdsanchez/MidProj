@@ -1,0 +1,131 @@
+Topic 1: Advanced Code Generation & Formatting
+
+File: demo_artifacts/topic1_generation.py
+
+Motivation:
+A developer's time is valuable. We should focus on solving complex problems, not on typing repetitive "boilerplate" code, remembering parameter names, or manually fixing code style. These tools act as an intelligent assistant to write better, more consistent code, faster.
+
+Flow:
+
+Code Completion (Imports): On line 2, delete Customer and re-type it to show the suggestion.
+
+Code Completion (Objects): On line 19, type c1. on a new line to show the .name and .level attribute suggestions.
+
+Docstring Generation: On line 7, delete the empty """""", then type """ and press Enter to show the template generation.
+
+Live Template (try): On line 12, type try and press Tab to generate the try...except block.
+
+Live Template (main): On line 26, delete the if __name__ == "__main__": block, then type main and press Tab to regenerate it.
+
+Code Reformatting: On line 5, show the messy self.name = name; self.level = level line, then press Ctrl+Alt+L (or Cmd+Option+L) to auto-format it.
+
+Topic 2: Code Refactoring & Analysis
+
+File: demo_artifacts/topic2_refactoring.py
+
+Motivation:
+The first draft of code is never the final draft. "Refactoring" is the process of cleaning up code structure without changing what it does. These tools let us perform complex changes (like renaming a variable in 10 places) safely and instantly, and they also find hidden bugs ("code smells") for us.
+
+Flow:
+
+Code Inspection: Hover over the yellow underline on the elif status == 'BRONZE' logic (line 34). Explain the "Condition is always true" warning.
+
+Rename Refactor (Var 1): Right-click the d parameter (line 6), use Refactor > Rename (or Shift+F6), and change it to data_list. Show that it updates on line 7.
+
+Rename Refactor (Var 2): Rename the item variable (line 12) to record.
+
+Extract Method: Select the entire "Part 2: Calculate Taxes" block (lines 20-27).
+
+Right-click and use Refactor > Extract > Method... (or Ctrl+Alt+M).
+
+Name the new method _calculate_taxes_and_fees and show how the 8-line block is replaced by a single function call.
+
+Topic 3: Integrated Testing (Pytest)
+
+Files: demo_artifacts/topic3_logic.py, demo_artifacts/test_topic3.py
+
+Motivation:
+How do we prove our code works? How do we make sure a change didn't break something else? We write automated tests. These tests are a "safety net" that catches bugs automatically. PyCharm's integrated tools let us run and analyze these tests visually, which is much faster than using a command line.
+
+Flow:
+
+Show the Code & Test Files: Briefly show topic3_logic.py (the Calculator class) and test_topic3.py (the test_ functions).
+
+Run All Tests: Right-click the test_topic3.py file tab and select Run 'pytest...'.
+
+Show Test Runner: Show the visual test runner window with its green checks and red X.
+
+Analyze Failure: Click the failed test_divide_by_zero_fails_demo. Show the AssertionError and the "Expected: 'Error', Actual: None" diff.
+
+Fix the Code: Go to topic3_logic.py (line 13). Change return None to return "Error".
+
+Re-run Single Test: Go back to test_topic3.py and click the green "play" icon next to only the test_divide_by_zero_fails_demo function. Show it pass.
+
+Topic 4: The Integrated Debugger
+
+File: demo_artifacts/topic4_debugger.py
+
+Motivation:
+What happens when your code runs but gives the wrong answer? Using print() statements to find the bug is slow and messy. The Debugger is the professional tool for this. It lets us "pause time"—freezing our program on a specific line to inspect all the variables, step through the logic, and find the exact source of the bug.
+
+Flow:
+
+Run Normally (Show Bug): Run the file to show the incorrect "square" output (**** x 4).
+
+Set Breakpoint: In topic4_debugger.py, click in the gutter next to line 14 (for j in range(1, n + 1):).
+
+Start Debugger: Right-click and choose Debug 'topic4_debugger.py'.
+
+Inspect (Loop 1): The code pauses. Show the "Variables" pane: n is 4, i is 1.
+
+Step Over: Press "Step Over" (F8).
+
+Find Bug: j is 1, line_to_print is *. Press "Step Over" again. j is now 2. Explain: "This is the bug! i is 1, but j is already 2. The inner loop should have stopped."
+
+Stop & Fix: Click "Stop". Change range(1, n + 1) on line 14 to range(1, i + 1).
+
+Re-run & Verify: Run the file normally to show the correct "triangle" output.
+
+Topic 5: Version Control (Git) Integration
+
+File: demo_artifacts/topic1_generation.py  (This topic re-uses another file)
+
+Motivation:
+In a team project, how do you combine everyone's work without creating chaos? What if a new bug is introduced, and you need to "go back in time" to a version that worked? Version Control (like Git) is the answer. It's a "save" button for your project's entire history. PyCharm's tools make this complex system visual and easy to use.
+
+Flow:
+
+Make a Change: In topic1_generation.py (line 16), change the "v1.0" in the print statement to "v2.0".
+
+Open Commit Tab: Show the "Commit" tool window. The file will be listed under "Changes".
+
+Show the Diff: Click on the file in the commit window to show the "diff" viewer, which highlights the change.
+
+Make a Commit: Type a commit message (e.g., "Updated version number in welcome message") and click the "Commit" button.
+
+Show the Log: Open the "Git" tool window and click the "Log" tab.
+
+Show History: Point to the new commit at the top of the log, showing the author, date, and message. This proves the "snapshot" was saved.
+
+Topic 6: Tasks & Contexts
+
+Files: demo_artifacts/topic2_refactoring.py, demo_artifacts/topic4_debugger.py (This topic re-uses other files)
+
+Motivation:
+A developer is constantly interrupted. You'll be deep in a complex feature (Task A) when a manager asks you to fix an urgent bug (Task B). This "context switch" is expensive—you have to close all your files, switch branches, and later try to remember where you were. This tool saves your entire workspace (your "context") so you can switch between tasks in seconds, not minutes.
+
+Flow:
+
+Start Task A: Go to Tools > Tasks & Contexts > Open Task... and select "Task A". Create a new branch feature/task-A.
+
+Create Context: Open topic2_refactoring.py. Add a breakpoint in topic4_debugger.py (line 14). This is your "workspace".
+
+Switch to Task B: Go to Tools > Tasks & Contexts > Open Task... and select "Task B".
+
+Save Context: When asked "Save context of Task A?", click Yes.
+
+Show New State: Create a new branch bugfix/task-B. Show that all files are now closed and the breakpoints are gone.
+
+Restore Context: Go to Tools > Tasks & Contexts > Switch Task... and select "Task A" again.
+
+Show Restored State: When asked "Restore context?", click Yes. Show that topic2_refactoring.py re-opens, and the breakpoint in topic4_debugger.py is still there.

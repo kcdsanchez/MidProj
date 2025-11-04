@@ -3,7 +3,7 @@
 def main():
     """Main application logic."""
 
-    # STEP 1: The presenter will change "v1.0" to "v2.0" for the demo
+    # STEP 1: The presenter will change "v2.0" to "v3.0" for the demo
     print("Welcome to the Company Portal v2.0")
 
     print("... existing code ...")

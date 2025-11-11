@@ -2,9 +2,9 @@
 
 # STEP 2: Rename 'q' to 'quantity'
 # STEP 3: Rename 'p' to 'price'
-def calculate_total_bill(q, p, user_status):
+def calculate_total_bill(quantity, p, user_status):
 
-    subtotal = q * p
+    subtotal = quantity * p
     discount_rate = 0.0
     if user_status == 'GOLD':
         discount_rate = 0.15

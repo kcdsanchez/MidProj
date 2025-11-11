@@ -11,5 +11,5 @@ class Calculator:
 
     def divide(self, a, b):
         if b == 0:
-            return None
+            return "Error"
         return a / b

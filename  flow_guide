@@ -1,23 +1,22 @@
 Topic 1: Advanced Code Generation & Formatting
 
 File: demo_artifacts/topic1_generation.py
+Pre-Demo Setup: The presenter for this topic must follow the custom_template_guide.md to create the newcust template before the demo.
 
 Motivation:
 A developer's time is valuable. We should focus on solving complex problems, not on typing repetitive "boilerplate" code, remembering parameter names, or manually fixing code style. These tools act as an intelligent assistant to write better, more consistent code, faster.
 
 Flow:
 
-Code Completion (Imports): On line 2, delete Customer and re-type it to show the suggestion.
+Code Completion (Objects): In topic1_generation.py, go to the main_app function (line 21). On the line after c1 = Customer(...), type c1. to show the .name and .level attribute suggestions.
 
-Code Completion (Objects): On line 19, type c1. on a new line to show the .name and .level attribute suggestions.
+Docstring Generation: Go to the get_customer_from_db function (line 11). Delete the empty """""" (line 12), then type """ again on the empty line and press Enter to show the template generation.
 
-Docstring Generation: On line 7, delete the empty """""", then type """ and press Enter to show the template generation.
+Custom Live Template (newcust): Go to the bottom of the main_app function (line 22). Type newcust and press Tab to generate your custom c$VAR$ = Customer(...) template.
 
-Live Template (try): On line 12, type try and press Tab to generate the try...except block.
+Live Template (main): Go to the bottom of the file (line 26). Delete the if __name__ == "__main__": block, then type main and press Tab to regenerate it.
 
-Live Template (main): On line 26, delete the if __name__ == "__main__": block, then type main and press Tab to regenerate it.
-
-Code Reformatting: On line 5, show the messy self.name = name; self.level = level line, then press Ctrl+Alt+L (or Cmd+Option+L) to auto-format it.
+Code Reformatting: Go to the Customer class (line 6). Show the messy self.name = name; self.level = level line, then press Ctrl+Alt+L (or Cmd+Option+L) to auto-format it.
 
 Topic 2: Code Refactoring & Analysis
 
@@ -28,28 +27,29 @@ The first draft of code is never the final draft. "Refactoring" is the process o
 
 Flow:
 
-Code Inspection: Hover over the yellow underline on the elif status == 'BRONZE' logic (line 34). Explain the "Condition is always true" warning.
+Code Inspection: In calculate_total_bill (line 23), hover over the yellow underline on shipping = 5.00. Explain the "Local variable 'shipping' value is not used" warning. (Optional: Delete the line to fix it).
 
-Rename Refactor (Var 1): Right-click the d parameter (line 6), use Refactor > Rename (or Shift+F6), and change it to data_list. Show that it updates on line 7.
+Rename Refactor (Var 1): Right-click the q parameter (line 4), use Refactor > Rename (or Shift+F6), and change it to quantity. Show that it updates on line 7.
 
-Rename Refactor (Var 2): Rename the item variable (line 12) to record.
+Rename Refactor (Var 2): Rename the p parameter (line 4) to price. Show it updates on line 7.
 
-Extract Method: Select the entire "Part 2: Calculate Taxes" block (lines 20-27).
+Extract Method: Select the entire "Part 3: Add shipping" block (lines 22-31).
 
 Right-click and use Refactor > Extract > Method... (or Ctrl+Alt+M).
 
-Name the new method _calculate_taxes_and_fees and show how the 8-line block is replaced by a single function call.
+Name the new method _calculate_shipping. (Optional: If PyCharm adds a Literal type hint that causes an error, simply delete the type hint from the new function's parameters).
 
 Topic 3: Integrated Testing (Pytest)
 
 Files: demo_artifacts/topic3_logic.py, demo_artifacts/test_topic3.py
+Pre-Demo Setup: Ensure pytest is installed (Python Packages > Search 'pytest' > Install) and set as the default test runner (Settings > Tools > Python Integrated Tools > Default test runner > pytest).
 
 Motivation:
 How do we prove our code works? How do we make sure a change didn't break something else? We write automated tests. These tests are a "safety net" that catches bugs automatically. PyCharm's integrated tools let us run and analyze these tests visually, which is much faster than using a command line.
 
 Flow:
 
-Show the Code & Test Files: Briefly show topic3_logic.py (the Calculator class) and test_topic3.py (the test_ functions).
+Show the Code & Test Files: Briefly show topic3_logic.py (the Calculator class with a bug) and test_topic3.py (the test_ functions).
 
 Run All Tests: Right-click the test_topic3.py file tab and select Run 'pytest...'.
 
@@ -66,66 +66,91 @@ Topic 4: The Integrated Debugger
 File: demo_artifacts/topic4_debugger.py
 
 Motivation:
-What happens when your code runs but gives the wrong answer? Using print() statements to find the bug is slow and messy. The Debugger is the professional tool for this. It lets us "pause time"—freezing our program on a specific line to inspect all the variables, step through the logic, and find the exact source of the bug.
+What happens when your code runs but gives the wrong answer? Using print() statements is slow and messy. The Debugger is the professional tool for this. It lets us "pause time"—freezing our program on a specific line to inspect all the variables, step through the logic, and find the exact source of the bug.
 
 Flow:
 
-Run Normally (Show Bug): Run the file to show the incorrect "square" output (**** x 4).
+Run Normally (Show Bug): Run the file. Show the console output is an incorrect 4x4 square of asterisks, not a triangle.
 
-Set Breakpoint: In topic4_debugger.py, click in the gutter next to line 14 (for j in range(1, n + 1):).
+Set Breakpoint: In topic4_debugger.py, click in the gutter next to line 14 (the for j in... loop) to add a red dot.
 
-Start Debugger: Right-click and choose Debug 'topic4_debugger.py'.
+Start Debugger: Right-click the file and choose Debug....
 
-Inspect (Loop 1): The code pauses. Show the "Variables" pane: n is 4, i is 1.
+Inspect (Loop 1): The code pauses. Point to the "Variables" pane: n is 4, i is 1.
 
-Step Over: Press "Step Over" (F8).
+Find Bug (Step Over): Press "Step Over" (F8). The code adds a *. j is 1. Press "Step Over" again.
 
-Find Bug: j is 1, line_to_print is *. Press "Step Over" again. j is now 2. Explain: "This is the bug! i is 1, but j is already 2. The inner loop should have stopped."
+The "Aha!" Moment: j is now 2... but i is still 1. The inner loop is running too many times! It's going all the way to n instead of i.
 
-Stop & Fix: Click "Stop". Change range(1, n + 1) on line 14 to range(1, i + 1).
+Stop & Fix: Click the "Stop" button. Go to line 14 and change range(1, n + 1) to range(1, i + 1).
 
-Re-run & Verify: Run the file normally to show the correct "triangle" output.
+Re-run & Verify: Run the file normally (Run, not Debug). Show the correct triangle output.
 
-Topic 5: Version Control (Git) Integration
+Topic 5: The Integrated TODO Tool
 
-File: demo_artifacts/topic1_generation.py  (This topic re-uses another file)
+Files: demo_artifacts/topic5_main.py, demo_artifacts/topic5_utils.py
+Pre-Demo Setup: Make sure the TODO tool window is open (View > Tool Windows > TODO).
 
 Motivation:
-In a team project, how do you combine everyone's work without creating chaos? What if a new bug is introduced, and you need to "go back in time" to a version that worked? Version Control (like Git) is the answer. It's a "save" button for your project's entire history. PyCharm's tools make this complex system visual and easy to use.
+This topic uses a detailed script to show how PyCharm turns simple code comments (# TODO) into a powerful, interactive project management dashboard that is 100% offline.
 
-Flow:
+The 5-Minute Demo Script:
 
-Make a Change: In topic1_generation.py (line 16), change the "v1.0" in the print statement to "v2.0".
+(0:00 - 0:45) — The Hook: "Stop Losing Your Code Notes"
+"Hi everyone. We all write comments in our code like 'TODO: fix this' or 'FIXME: this is a bug.' The problem is we forget where they are. PyCharm solves this with the TODO Tool Window. It's a live, interactive dashboard for all the 'technical debt' and notes you've left for yourself and your team."
+(Point to the TODO tool window, which should already show the comments from topic5_main.py and topic5_utils.py)
 
-Open Commit Tab: Show the "Commit" tool window. The file will be listed under "Changes".
+(0:45 - 2:00) — Feature 1: Your Interactive Code GPS
+"This window automatically scans your entire project in real-time, grouped by file. You can see I have one TODO and one FIXME.
+The best part is instant navigation. If I want to tackle this 'broken input' bug..."
+(Double-click the FIXME item in the TODO list).
+"Boom. PyCharm instantly opens topic5_main.py and puts my cursor on that exact line. Now I'll jump to the caching issue..."
+(Double-click the TODO item for topic5_utils.py).
+"And I'm instantly in topic5_utils.py. No searching, no file-switching. It's a GPS for your code tasks."
 
-Show the Diff: Click on the file in the commit window to show the "diff" viewer, which highlights the change.
+(2:00 - 3:30) — Feature 2: Making It Your Own (Custom Tags)
+"But it's not just for 'TODO' and 'FIXME'. You can create any pattern you want. Let's say our team wants to mark code for 'REVIEW'.
+I'll go to Settings > Editor > TODO."
+(Navigate to the settings menu).
+"I'll click the + icon to add a new pattern. I'll type in \bREVIEW\b.*
+And to make it stand out, I'll give it a custom color—let's make it bright blue and bold."
+(Quickly add the pattern, set a color, and hit 'OK').
+"Now, I'll go back to my topic5_main.py file and add a new comment:"
+(Type this in topic5_main.py): # REVIEW: Is this the most efficient way to do this?
+"Now look... as soon as I type it, it instantly appears in my TODO window, highlighted in the new blue color."
 
-Make a Commit: Type a commit message (e.g., "Updated version number in welcome message") and click the "Commit" button.
+(3:30 - 4:30) — Feature 3: Scopes & Filtering (Staying Focused)
+"In a huge project, this list could have hundreds of items. This is where scopes and filters come in.
+First, I can filter by my custom tags. I'll click the 'Filter' icon and uncheck TODO and FIXME."
+(Click the filter icon in the TODO window, uncheck the defaults).
+"And now, I only see my 'REVIEW' items.
+But my favorite feature is changing the scope. Right now, it's set to 'Project'.
+Let me open topic5_main.py. Now, I'll change the scope to 'Current File'."
+(Click the scope button (looks like a folder/funnel) and select 'Current File').
+"The list instantly filters to show only the tasks in the file I'm working on. If I switch my editor to topic5_utils.py, the TODO list automatically updates. This keeps the list focused on what you are doing right now."
 
-Show the Log: Open the "Git" tool window and click the "Log" tab.
-
-Show History: Point to the new commit at the top of the log, showing the author, date, and message. This proves the "snapshot" was saved.
+(4:30 - 5:00) — The Wrap-Up
+"So, the TODO tool automatically finds all your code notes, acts as an interactive GPS, lets you create custom tags, and filters by scope to keep you focused. It's a simple, powerful tool that turns messy comments into an organized, actionable checklist."
 
 Topic 6: Tasks & Contexts
 
-Files: demo_artifacts/topic2_refactoring.py, demo_artifacts/topic4_debugger.py (This topic re-uses other files)
+Files: demo_artifacts/topic6_task_A.py, demo_artifacts/topic6_task_B.py
 
 Motivation:
-A developer is constantly interrupted. You'll be deep in a complex feature (Task A) when a manager asks you to fix an urgent bug (Task B). This "context switch" is expensive—you have to close all your files, switch branches, and later try to remember where you were. This tool saves your entire workspace (your "context") so you can switch between tasks in seconds, not minutes.
+A developer is constantly interrupted. You'll be deep in a complex feature (Task A) when a manager asks you to fix an urgent bug (Task B). This "context switch" is expensive—you have to close all your files and later try to remember where you were. This tool saves your entire workspace (your "context") so you can switch between tasks in seconds.
 
 Flow:
 
-Start Task A: Go to Tools > Tasks & Contexts > Open Task... and select "Task A". Create a new branch feature/task-A.
+Start Task A: Go to Tools > Tasks & Contexts > Open Task.... Click "Add Task..." to create a Local Task named "Task A: Refactor Analytics".
 
-Create Context: Open topic2_refactoring.py. Add a breakpoint in topic4_debugger.py (line 14). This is your "workspace".
+Create Context: Open topic6_task_A.py. This is your "workspace" for this feature.
 
-Switch to Task B: Go to Tools > Tasks & Contexts > Open Task... and select "Task B".
+Switch to Task B: Go to Tools > Tasks & Contexts > Open Task.... Add a new Local Task named "Task B: Fix Login Bug".
 
 Save Context: When asked "Save context of Task A?", click Yes.
 
-Show New State: Create a new branch bugfix/task-B. Show that all files are now closed and the breakpoints are gone.
+Show New State: You are now on "Task B". Show that topic6_task_A.py is closed. Open topic6_task_B.py. This is your new workspace.
 
-Restore Context: Go to Tools > Tasks & Contexts > Switch Task... and select "Task A" again.
+Restore Context: Go to Tools > Tasks & Contexts > Switch Task... and select your original "Task A".
 
-Show Restored State: When asked "Restore context?", click Yes. Show that topic2_refactoring.py re-opens, and the breakpoint in topic4_debugger.py is still there.
+Show Restored State: When asked "Restore context?", click Yes. Show that topic6_task_B.py closes and topic6_task_A.py re-opens automatically. You are right back where you started.

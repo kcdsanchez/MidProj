@@ -141,16 +141,98 @@ A developer is constantly interrupted. You'll be deep in a complex feature (Task
 
 Flow:
 
-Start Task A: Go to Tools > Tasks & Contexts > Open Task.... Click "Add Task..." to create a Local Task named "Task A: Refactor Analytics".
+(0:00 - 0:45) — The Hook & Motivation
 
-Create Context: Open topic6_task_A.py. This is your "workspace" for this feature.
+Script: "Good morning. I'll be demonstrating Topic 6: Tasks and Contexts. The motivation is this: a developer's biggest enemy is interruptions. This tool is our "interrupt-shield." It saves our entire workspace—not just files, but breakpoints, bookmarks, and even Git branches—so we can juggle multiple tasks without losing our minds. I'll demo this by juggling three tasks."
 
-Switch to Task B: Go to Tools > Tasks & Contexts > Open Task.... Add a new Local Task named "Task B: Fix Login Bug".
+(0:45 - 1:30) — Step 1: Start "Task A" (The Main Feature)
 
-Save Context: When asked "Save context of Task A?", click Yes.
+Action: Go to Tools > Tasks & Contexts > Open Task...
 
-Show New State: You are now on "Task B". Show that topic6_task_A.py is closed. Open topic6_task_B.py. This is your new workspace.
+Action: Create a Local Task named "Task A: Analytics Feature".
 
-Restore Context: Go to Tools > Tasks & Contexts > Switch Task... and select your original "Task A".
+Action: When prompted, create a new Git branch named feature/analytics.
 
-Show Restored State: When asked "Restore context?", click Yes. Show that topic6_task_B.py closes and topic6_task_A.py re-opens automatically. You are right back where you started.
+Script: "I'm starting my main feature. I'll open my task and create a new Git branch for it."
+
+Action: Now, create your rich context:
+
+Open topic6_task_A_main.py.
+
+Set a Breakpoint on line 30 (self.processed_data = ...).
+
+Open topic6_task_A_utils.py.
+
+Set a Bookmark (e.g., Ctrl+F11) on line 16 (return [...]).
+
+Script: "My 'context' is complex. I have two files open, a breakpoint in one, and a bookmark in the other. This is my 'flow'."
+
+(1:30 - 2:30) — Step 2: Interruption 1 ("Task B" - Urgent Bug)
+
+Action: Go to Tools > Tasks & Contexts > Open Task...
+
+Script: "Oh no—an urgent bug. I'll switch tasks."
+
+Action: Create a Local Task named "Task B: Fix Payment Bug".
+
+Action: In the dialog, create another new Git branch named hotfix/payment-bug.
+
+Script: "PyCharm asks to Save Context for Task A. I'll say yes. It also automatically switches my Git branch to hotfix/payment-bug."
+
+Action: The workspace is now clean. Open topic6_task_B_bugfix.py and set a Breakpoint on line 27 (print(f"Connecting...")).
+
+Script: "My workspace is clean. I've opened the bug file and set a new breakpoint for this task."
+
+(2:30 - 3:15) — Step 3: Interruption 2 ("Task C" - Quick Review)
+
+Script: "I'm in the middle of the bug fix, and a teammate asks for a quick code review. Another interruption!"
+
+Action: Go to Tools > Tasks & Contexts > Open Task...
+
+Action: Create a Local Task named "Task C: Review Refactor".
+
+Action: This time, select "Don't change branch" (since you're just reviewing).
+
+Script: "I'll create a third task. PyCharm will save my 'Task B' context."
+
+Action: The workspace is clean again. Open topic6_task_C_refactor.py.
+
+Script: "I'll open the refactor file, look at it, and I'm done. Now, let's go back up the stack."
+
+(3:15 - 4:15) — Step 4: Restoring the Stack (The "Magic")
+
+Script: "First, let's get back to that bug."
+
+Action: Go to Tools > Tasks & Contexts > Switch Task... and select "Task B: Fix Payment Bug".
+
+Script: "PyCharm asks to restore my 'Task B' context."
+
+Action: Click "Restore Context".
+
+Script (The first "Aha!"): "Instantly, the Task C file closes, topic6_task_B_bugfix.py re-opens, and my breakpoint on line 27 is back. My Git branch is also back to hotfix/payment-bug."
+
+Script: "Okay, bug is fixed. Now... where was I on my main feature?"
+
+Action: Go to Tools > Tasks & Contexts > Switch Task... and select "Task A: Analytics Feature".
+
+Action: Click "Restore Context".
+
+(4:15 - 4:45) — Step 5: The Full Restore (The "Wow" Moment)
+
+Script: "And this is the real magic. My workspace is exactly as I left it two interruptions ago."
+
+Action: Show the screen.
+
+topic6_task_A_main.py is open.
+
+topic6_task_A_utils.py is also open.
+
+The Breakpoint on line 30 of main is back.
+
+The Git branch is back to feature/analytics.
+
+"And even my Bookmark in the utils file is still here." (Action: Open the Bookmarks window (Shift+F11) to prove it).
+
+(4:45 - 5:00) — The Conclusion
+
+Script: "This tool isn't just a file-switcher. It's a complete workspace manager that saves your files, breakpoints, bookmarks, and automates your Git branches, letting you manage multiple interruptions without losing your focus. Thank you."

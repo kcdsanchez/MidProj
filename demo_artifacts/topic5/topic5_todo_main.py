@@ -82,8 +82,9 @@ class Application:
             logger.warning(f"Not enough stock for {product.name}.")
             return
 
-
-        total_amount = self._calculate_total_amount(price, quantity)
+        # FIXME: This is a terrible way to calculate total.
+        # This should be handled by an Order or Cart class.
+        total_amount = price * quantity
 
         # Process the payment
         success = process_payment(user, total_amount)

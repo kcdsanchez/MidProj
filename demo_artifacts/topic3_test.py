@@ -18,6 +18,5 @@ def test_subtract():
 # This test will FAIL, then PASS after the fix
 def test_divide_by_zero_fails_demo():
     calc = Calculator()
-    # STEP 4: Show this test failing (Expected: "Error", Actual: None)
-    # STEP 6: Re-run this single test to show it passes
+
     assert calc.divide(10, 0) == "Error"

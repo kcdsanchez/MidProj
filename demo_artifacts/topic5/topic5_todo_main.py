@@ -20,7 +20,6 @@ CONFIG = {
     'api_key': '12345-ABCDE'
 }
 
-
 class Application:
     """
     Main application class to encapsulate the app logic.
@@ -96,6 +95,11 @@ class Application:
             logger.info(f"Purchase successful for {user.username}!")
         else:
             logger.error(f"Purchase failed for {user.username}.")
+
+    def _calculate_total_amount(self, price, quantity):
+        logger.info("Calculating total...")
+        return price * quantity
+
 
 
 def main():

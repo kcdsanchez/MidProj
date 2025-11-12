@@ -1,0 +1,52 @@
+### 1. SIMPLE CHECK (GET)
+# We use {{host}} so we can switch between "Dev" and "Prod" without rewriting the URL.
+GET https://{{host}}/get
+Accept: application/json
+
+> {%
+    // A simple test to ensure the server is online (Status 200 means "OK")
+    client.test("Server is online", function() {
+        client.assert(response.status === 200, "Server is down!");
+    });
+%}
+
+### 2. REGISTER A STUDENT (POST)
+# We are sending data TO the server to create a new student.
+# We use a built-in tool {{$randomInt}} to generate a random Student ID automatically.
+POST https://{{host}}/post
+Content-Type: application/json
+
+{
+  "name": "New Python Student",
+  "student_id": "{{$randomInt}}"
+}
+
+> {%
+    // SCRIPTING: This runs automatically AFTER the request finishes.
+    // 1. We look at the server's response and find the 'student_id' it received.
+    let id_from_server = response.body.json.student_id;
+
+    // 2. We tell PyCharm to REMEMBER this ID as a variable named "my_saved_id".
+    // This saves us from having to copy-paste it manually!
+    client.global.set("my_saved_id", id_from_server);
+
+    client.log("Success! We saved Student ID: " + id_from_server);
+%}
+
+### 3. FIND STUDENT PROFILE (GET)
+# Now we want to look up the student we just created.
+# Notice we use {{my_saved_id}}. PyCharm automatically fills this in
+# with the number we captured in step 2.
+GET https://{{host}}/get?search_id={{my_saved_id}}
+Accept: application/json
+
+> {%
+    // TESTING: This verifies that the automation worked.
+    client.test("Correct ID was sent", function() {
+        // We compare what we sent to the server vs. what we have saved in memory.
+        let sent_id = response.body.args.search_id;
+        let memory_id = client.global.get("my_saved_id");
+
+        client.assert(sent_id === memory_id, "The IDs don't match.");
+    });
+%}

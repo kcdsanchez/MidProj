@@ -46,6 +46,7 @@ Section 2: Data Processing (The part you are working on)
     def __repr__(self):
         return f"Report(Data={self.processed_data})"
 
+
 if __name__ == "__main__":
     report = DataAnalyticsReport()
     report.load_data("source-123")

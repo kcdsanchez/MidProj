@@ -1,5 +1,5 @@
 # This is the artifact for Topic 3: Integrated Testing (The Test File)
-
+import unittest
 from topic3_logic import Calculator
 
 # This test will pass

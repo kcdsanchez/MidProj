@@ -83,8 +83,9 @@ class Application:
             return
 
         # FIXME: This is a terrible way to calculate total.
-        # This should be handled by an Order or Cart class.
+        # This should be handled by the calculate amount function.
         total_amount = price * quantity
+
 
         # Process the payment
         success = process_payment(user, total_amount)

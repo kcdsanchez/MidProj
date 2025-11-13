@@ -24,8 +24,8 @@ def is_safe(board, row, col, n):
             return False
 
     # Check upper-left diagonal
-    # This loop is correct
-    for i, j in zip(range(row, -1, -1), range(col, -1, -1)):
+    # This loop is incorrect, should row -1 -1
+    for i, j in zip(range(row, 1, 1), range(col, -1, -1)):
         if board[i][j] == 'Q':
             return False
 

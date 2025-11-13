@@ -7,7 +7,7 @@ def draw_triangle(n: int):
 
     # BUG 1: condition infinitely loops, should be n <= 1
     #Bug 1 is an eyeball debug, and does not need a breakpoint to follow the logic
-    while n<=1:
+    while True:
         print("Triangle size must be 2 or more.")
         display_menu()
 

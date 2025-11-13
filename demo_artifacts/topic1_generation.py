@@ -5,19 +5,9 @@ class Customer:
     def __init__(self, name: str, level: str):
         self.name = name;
         self.level = level;
-        k = 20;
-        i = 21;
-        r = 22;
-        k = 23 #Bad Formatting
+        k = 20;i = 21;r = 22;k = 23 #Bad Formatting
 
- # STEP 2: Demo docstring generation on the function below
 def get_customer_from_db(customer_id: int, include_history: bool):
-    """
-
-    :param customer_id:
-    :param include_history:
-    :return:
-    """
     pass
 
 
@@ -28,11 +18,10 @@ def main_app():
     c1 = Customer("Aaron", "Platinum")
     c2 = Customer("Mj", "Diamond")
     c3 = Customer("Kirk", "Bronze")
-    c4 = Customer("kirmakfgn.")
 
 
 
-# STEP 3: Demo 'main' live template by deleting and re-typing the block below
+
 if __name__ == "__main__":
     main_app()
 
